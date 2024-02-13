@@ -1,0 +1,26 @@
+class Solution {
+public:
+       vector<vector<int>> allsubsets;
+
+       void func (vector<int> &arr,int i,vector<int>&nums,int n) {
+       
+                  if(i>=n){
+                      allsubsets.push_back(arr);
+                      return;
+                  }
+                  arr.push_back(nums[i]);
+                  func(arr,i+1,nums,n);
+                  arr.pop_back();
+                    func(arr,i+1,nums,n);
+       }
+
+   
+    vector<vector<int>> subsets(vector<int>& nums) {
+          
+        vector<int>empty;
+        int n=nums.size();
+        func(empty,0,nums,n);
+             return allsubsets;            
+
+    }
+};
