@@ -1,0 +1,50 @@
+
+
+//// solution by using extra space
+
+#include <vector>
+
+class Solution {
+public:
+    int removeDuplicates(std::vector<int>& nums) {
+      
+
+        vector<int> heap;
+        heap.push_back(nums[0]);
+
+        for (int i = 1; i < nums.size(); ++i) {
+            if (nums[i] != nums[i - 1]) {
+                heap.push_back(nums[i]);
+            }
+        }
+
+        for (int i = 0; i < heap.size(); ++i) {
+            nums[i] = heap[i];
+        }
+
+        return heap.size();
+    }
+};
+
+
+/// sp;ution by two pointer approaches
+// time complexity will be O{n}; pass in one call
+#include <vector>
+
+class Solution {
+public:
+    int removeDuplicates(std::vector<int>& nums) {
+      
+
+       int i=0;
+       for(int j=1;j<nums.size();j++){
+           if(nums[j]!=nums[i]){
+               nums[i+1]=nums[j];
+               i++;
+           }
+       }
+       return (i+1);
+       
+    }
+};
+
