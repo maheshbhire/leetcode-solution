@@ -1,0 +1,24 @@
+#include <vector>
+#include <algorithm>
+
+class Solution {
+public:
+    int findMaxConsecutiveOnes(std::vector<int>& nums) {
+        vector<int> temp;
+        int count = 0;
+
+        for (int i = 0; i < nums.size(); i++) {
+            if (nums[i] == 1) {
+                count++;
+            } else {
+                temp.push_back(count);
+                count = 0;
+            }
+        }
+
+        // Handle the case where the sequence ends with consecutive ones
+        temp.push_back(count);
+
+        return *std::max_element(temp.begin(), temp.end());
+    }
+};
