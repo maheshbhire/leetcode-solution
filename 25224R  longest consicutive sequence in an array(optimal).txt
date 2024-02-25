@@ -1,0 +1,71 @@
+#include <vector>
+#include <algorithm>
+
+int longestSuccessiveElements(std::vector<int>& a) {
+    if (a.empty()) return 0;
+
+    std::sort(a.begin(), a.end());
+
+    int count = 1;
+    int longest=1;
+   
+
+    for (int i = 1; i < a.size(); ++i) {
+        if (a[i] == a[i - 1] + 1) {
+            count++;
+        } 
+        else if ((a[i-1]+1)-a[i]==1){
+            continue;
+        }
+        else {
+           
+            count = 1;
+        }
+        longest=max(count,longest);
+    }
+
+   
+
+    return longest;
+}
+
+
+
+\\\\\ optimal
+
+#include <vector>
+#include <algorithm>
+
+int longestSuccessiveElements(std::vector<int>& a) {
+    int n=a.size();
+if(n==0) return 0;
+       unorderd_set<int>st;
+
+   
+    int longest=1;
+
+    for (int i = 0; i < a.size(); i++) {
+      st.insert(a[i]);
+    }
+
+
+    for(auto it:st){
+          if(st.find(it-1)==st.end()){
+             int count =1;
+             int x=it;
+          
+             while(st.find(x+1)!=st.end()){
+                      count+=1;
+                      x++;
+             }
+           
+            
+        
+        longest=max(count,longest);
+    }
+
+   }
+
+    return longest;
+}
+
